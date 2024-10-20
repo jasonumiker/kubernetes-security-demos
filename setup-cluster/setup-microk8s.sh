@@ -86,3 +86,6 @@ microk8s stop
 microk8s start
 sleep 30
 kubectl rollout status daemonset falco -n falco --timeout 300s
+
+# If you don't install observability then install the metrics-server
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml

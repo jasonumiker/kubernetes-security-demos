@@ -12,13 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM golang:1.20.6-bookworm as builder
+FROM golang:1.23.2-bookworm as builder
 WORKDIR /app
 RUN go mod init hello-app
 COPY *.go ./
 RUN CGO_ENABLED=0 GOOS=linux go build -o /hello-app
 
-FROM gcr.io/distroless/base-debian11
+FROM gcr.io/distroless/base-debian12
 WORKDIR /
 COPY --from=builder /hello-app /hello-app
 ENV PORT 8080
