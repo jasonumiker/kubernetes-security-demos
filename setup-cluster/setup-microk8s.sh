@@ -9,7 +9,7 @@ microk8s enable hostpath-storage
 microk8s enable rbac
 #microk8s enable observability
 microk8s enable community
-microk8s enable trivy
+#microk8s enable trivy
 #microk8s enable falco
 microk8s status --wait-ready
 
@@ -59,6 +59,7 @@ echo "- name: john" >> /root/.kube/config
 echo "  user:" >> /root/.kube/config
 echo "    token: "$JOHN_TOKEN >> /root/.kube/config
 cat known_tokens.csv >> /var/snap/microk8s/current/credentials/known_tokens.csv
+echo "--token-auth-file=${SNAP_DATA}/credentials/known_tokens.csv" >> /var/snap/microk8s/current/args/kube-apiserver
 microk8s stop
 microk8s start
 mkdir /home/ubuntu/.kube/
